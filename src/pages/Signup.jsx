@@ -52,7 +52,7 @@ const Signup = () => {
 
       if (res.ok) {
         toast.success(res.message);
-        navigate("/login");
+        navigate("/");
       } else {
         throw new Error(res.message || "Signup failed");
       }
