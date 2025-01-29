@@ -5,6 +5,7 @@ import moment from "moment";
 import toast from "react-hot-toast";
 
 import NoteSkeleton from "../components/NoteSkeleton";
+import { getAuthHeaders } from "../utils";
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -18,15 +19,6 @@ const Notes = () => {
   const [noteIdToDelete, setNoteIdToDelete] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  const getAuthHeaders = () => {
-    const token = localStorage.getItem("token");
-    console.log(token)
-    return {
-      "Content-Type": "application/json",
-      Authorization: token,
-    };
-  };
 
   const fetchNotes = async () => {
     try {

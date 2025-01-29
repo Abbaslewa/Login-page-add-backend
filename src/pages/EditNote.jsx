@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Loader2, Save, ArrowLeft } from "lucide-react";
 import toast from "react-hot-toast";
 import ErrorAlert from "../components/ErrorAlert";
+import { getAuthHeaders } from "../utils";
 
 const EditNote = () => {
   const [title, setTitle] = useState("");
@@ -20,9 +21,7 @@ const EditNote = () => {
     const fetchNote = async () => {
       try {
         const response = await fetch(`${apiUrl}/v1/notes/${id}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+          headers: getAuthHeaders(),
         });
         const data = await response.json();
 
@@ -53,10 +52,7 @@ const EditNote = () => {
     try {
       const response = await fetch(`${apiUrl}/v1/notes/${id}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+        headers: getAuthHeaders(),
         body: JSON.stringify({
           title: title.trim(),
           content: content.trim(),
