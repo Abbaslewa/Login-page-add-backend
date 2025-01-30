@@ -143,7 +143,7 @@ const Notes = () => {
         {notes?.map(note => (
           <div
             key={note._id}
-            className='group bg-secondary rounded-xl p-4 shadow-sm border border-tertiary flex justify-between items-center transition-all hover:shadow-md hover:bg-secondary/80'
+            className='group bg-secondary rounded-xl p-4 shadow-sm border border-tertiary flex justify-between items-center transition-all hover:shadow-md hover:bg-secondary/80 group'
           >
             <div className='flex-1 pr-4'>
               <h2 className='text-white/90 text-lg font-semibold break-words mb-1.5'>{note.title}</h2>
@@ -152,7 +152,13 @@ const Notes = () => {
                 Created: {moment(note.createdAt).format('MMM Do YYYY, h:mm a')}
               </small>
             </div>
-            <div className='flex gap-1'>
+            <div
+              className={`gap-1 transition-all duration-300 ease-in-out ${
+                noteIdToDelete === note._id && isDeleting
+                  ? 'flex opacity-100'
+                  : 'opacity-0 hidden group-hover:flex group-hover:opacity-100'
+              }`}
+            >
               <button
                 onClick={() => navigate(`/note/${note._id}/edit`)}
                 className='p-2 text-tertiary hover:bg-primary rounded-lg transition-colors'
