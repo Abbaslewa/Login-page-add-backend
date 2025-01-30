@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier \"src/**/*.{js,jsx}\" --write"
   },
   "dependencies": {
     "framer-motion": "^12.0.6",

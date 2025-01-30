@@ -1,10 +1,9 @@
 const getAuthHeaders = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   return {
-    "Content-Type": "application/json",
-    Authorization: token,
+    'Content-Type': 'application/json',
+    'Authorization': token,
   };
 };
-
 
 export { getAuthHeaders };
