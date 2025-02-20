@@ -14,7 +14,7 @@ const Signup = () => {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const apiUrl = import.meta.env.VITE_USING_APP_URL ;
 
   // Check if user is already logged in
   if (localStorage.getItem('token')) {

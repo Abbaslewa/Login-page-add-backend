@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { ArrowRight, Loader2 } from 'lucide-react';
-import toast from 'react-hot-toast';
 import ErrorAlert from '../components/ErrorAlert';
 
 const Login = () => {
@@ -11,9 +10,8 @@ const Login = () => {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const apiUrl = import.meta.env.VITE_USING_APP_URL;
 
-  // Check if user is already logged in
   if (localStorage.getItem('token')) {
     return <Navigate to='/notes' replace />;
   }
@@ -51,56 +49,64 @@ const Login = () => {
   };
 
   return (
-    <main className='min-h-screen p-6 md:p-10 bg-primary flex items-center justify-center'>
-      <div className='w-full max-w-md'>
-        <h1 className='text-4xl font-bold mb-8 text-center'>Login</h1>
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-400 via-blue-500 to-purple-700 p-6">
+      <div className="backdrop-blur-lg bg-white/10 border border-white/30 rounded-xl shadow-lg p-8 sm:p-10 max-w-sm w-full">
+        <h1 className="text-3xl font-bold text-white text-center mb-6">Login</h1>
+        <p className="text-white/80 text-center mb-6">
+          Please sign in to continue
+        </p>
 
-        <form onSubmit={handleSubmit} className='bg-secondary p-6 rounded-2xl border border-tertiary transition-all'>
+        <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
             <ErrorAlert
-              className='mb-6 p-4 bg-error/10 text-error rounded-lg border border-error/50 flex items-center gap-3'
+              className="bg-red-200 text-red-600 p-3 rounded-md border border-red-400 mb-4"
               message={error}
             />
           )}
 
-          <input
-            type='email'
-            placeholder='Email'
-            required
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            className='w-full mb-4 bg-transparent border border-tertiary py-3 px-4 rounded-xl outline-none focus:border-white transition-all duration-700 font-medium'
-          />
+          <div>
+            <label className="block text-white/70 mb-2">Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              className="w-full p-3 rounded-lg bg-white/20 border border-white/40 placeholder-white/70 text-white focus:ring-4 focus:ring-blue-500 focus:border-transparent outline-none backdrop-blur-lg"
+            />
+          </div>
 
-          <input
-            type='password'
-            placeholder='Password'
-            required
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            className='w-full mb-4 bg-transparent border border-tertiary py-3 px-4 rounded-xl outline-none focus:border-white transition-all duration-700 font-medium'
-          />
+          <div>
+            <label className="block text-white/70 mb-2">Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              required
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              className="w-full p-3 rounded-lg bg-white/20 border border-white/40 placeholder-white/70 text-white focus:ring-4 focus:ring-blue-500 focus:border-transparent outline-none backdrop-blur-lg"
+            />
+          </div>
 
           <button
-            type='submit'
+            type="submit"
             disabled={isSubmitting}
-            className='w-full bg-primary py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-70 disabled:cursor-not-allowed'
+            className="w-full bg-gradient-to-r from-teal-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-gradient-to-l focus:ring-4 focus:ring-purple-500 transition-all flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
           >
-            {isSubmitting ? <Loader2 className='animate-spin' size={20} /> : null}
+            {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : null}
             <span>{isSubmitting ? 'Logging in...' : 'Login'}</span>
           </button>
-
-          <div className='mt-6 text-center'>
-            <Link
-              to='/signup'
-              type='button'
-              className=' text-white/60 hover:text-white transition-colors inline-flex items-center gap-2'
-            >
-              Don't have an account? Sign up
-              <ArrowRight size={16} />
-            </Link>
-          </div>
         </form>
+
+        <div className="mt-6 text-center">
+          <Link
+            to="/signup"
+            className="text-white/60 hover:text-white transition-colors"
+          >
+            Don't have an account? Sign up
+            <ArrowRight size={16} className="inline ml-1" />
+          </Link>
+        </div>
       </div>
     </main>
   );

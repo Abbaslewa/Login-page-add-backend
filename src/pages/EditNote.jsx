@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Loader2, Save, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -14,7 +14,7 @@ const EditNote = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const apiUrl = import.meta.env.VITE_USING_APP_URL ;
 
   // Fetch note data
   useEffect(() => {
