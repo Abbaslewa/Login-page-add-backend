@@ -51,7 +51,7 @@ const Login = () => {
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-400 via-blue-500 to-purple-700 p-6">
       <div className="backdrop-blur-lg bg-white/10 border border-white/30 rounded-xl shadow-lg p-8 sm:p-10 max-w-sm w-full">
-        <h1 className="text-3xl font-bold text-white text-center mb-6">Login</h1>
+        <h1 className="text-3xl font-bold font-semibold text-white text-center mb-6">Login</h1>
         <p className="text-white/80 text-center mb-6">
           Please sign in to continue
         </p>
